@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luna App - Yeni Nəsil Tətbiq Mərkəzi</title>
+    <title>Luna App</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #121826;
+            --bg-color: #0c101d;
+            --card-bg: #131a2e;
+            --card-border: #1e293b;
             --text-color: #ffffff;
-            --text-muted: #9ca3af;
+            --text-muted: #8b9bb4;
             --accent-gradient: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
             --primary-color: #6366f1;
-            --border-color: rgba(255, 255, 255, 0.1);
         }
 
         [data-theme="light"] {
-            --bg-color: #f3f4f6;
+            --bg-color: #f1f5f9;
             --card-bg: #ffffff;
-            --text-color: #111827;
-            --text-muted: #4b5563;
+            --card-border: #e2e8f0;
+            --text-color: #0f172a;
+            --text-muted: #64748b;
             --accent-gradient: linear-gradient(135deg, #4f46e5, #9333ea, #db2777);
             --primary-color: #4f46e5;
-            --border-color: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -36,340 +36,279 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding: 0;
+            padding: 24px;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         /* Header */
-        header {
+        .app-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            margin-bottom: 35px;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
+        .brand {
             display: flex;
-            gap: 20px;
-            list-style: none;
+            align-items: center;
+            gap: 12px;
         }
 
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
         }
 
-        .nav-links a:hover {
-            color: var(--text-color);
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
         }
 
-        .nav-buttons button {
+        .header-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .ctrl-btn {
             background: var(--card-bg);
             color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 8px 15px;
-            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            padding: 8px 16px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-left: 8px;
             font-weight: 600;
+            font-size: 14px;
         }
 
-        /* Hero Section */
-        .hero {
+        /* Hero Banner */
+        .banner-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            gap: 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        .hero-content {
-            flex: 1;
+        .banner-text h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+            line-height: 1.25;
         }
 
-        .badge {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary-color);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
+        .banner-text h1 span {
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
+        .banner-text p {
             color: var(--text-muted);
             font-size: 15px;
-            margin-bottom: 25px;
-            line-height: 1.5;
+            margin-bottom: 24px;
+            max-width: 480px;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 15px;
-        }
-
-        .primary-btn {
+        .dl-button {
             background: var(--accent-gradient);
             color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
+            padding: 12px 26px;
+            border-radius: 14px;
             border: none;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 15px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
         }
 
-        .secondary-btn {
-            background: var(--card-bg);
-            color: var(--text-color);
-            padding: 12px 24px;
-            border-radius: 30px;
-            border: 1px solid var(--border-color);
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Mockup Phone Graphic */
-        .hero-mockup {
-            width: 260px;
-            height: 480px;
-            background: var(--card-bg);
-            border-radius: 35px;
-            border: 4px solid #334155;
-            padding: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .banner-visual {
+            width: 180px;
+            height: 180px;
+            background: rgba(99, 102, 241, 0.04);
+            border: 2px dashed rgba(99, 102, 241, 0.25);
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
         }
 
-        .mockup-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
+        /* Grid Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
-        /* Main Sections */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 60px 20px;
-        }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .categories {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .cat-btn {
+        .info-card {
             background: var(--card-bg);
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            padding: 8px 18px;
+            border: 1px solid var(--card-border);
             border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .cat-btn.active, .cat-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: transparent;
-        }
-
-        /* Banner Card */
-        .banner-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 30px;
-            margin-top: 40px;
+            padding: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .banner-card h3 {
-            font-size: 22px;
-            margin-bottom: 8px;
+        .info-card h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
         }
 
-        .banner-card p {
+        .info-card p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        /* Modals & AI Floating */
-        .modal {
+        .card-btn {
+            background: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--card-border);
+            padding: 8px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* Modals */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.65);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
-        .modal-content {
+        .modal-box {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            width: 380px;
+            border: 1px solid var(--card-border);
+            padding: 28px;
+            border-radius: 20px;
+            width: 360px;
             position: relative;
-            border: 1px solid var(--border-color);
         }
 
-        .close-btn {
+        .close-x {
             position: absolute;
-            top: 12px; right: 18px;
+            top: 14px; right: 18px;
             cursor: pointer;
             font-size: 20px;
+            color: var(--text-muted);
         }
 
-        .ai-float-btn {
+        /* AI Floating Icon */
+        .ai-floating {
             position: fixed;
-            bottom: 20px; right: 20px;
+            bottom: 24px; right: 24px;
             background: var(--primary-color);
             color: white;
-            width: 60px; height: 60px;
+            width: 56px; height: 56px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
             z-index: 999;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">Luna App</div>
-        <ul class="nav-links">
-            <li><a href="#">Tətbiqlər</a></li>
-            <li><a href="#">Yeniliklər</a></li>
-            <li><a href="#">Haqqımızda</a></li>
-        </ul>
-        <div class="nav-buttons">
-            <button onclick="toggleTheme()">🌓</button>
-            <button onclick="openSettings()">⚙️ Ayarlar</button>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <span class="badge">✨ YENİ NƏSİL TƏTBİQ MƏRKƏZİ</span>
-            <h1>Luna App ilə hər şey <span>əlinin altındadır.</span></h1>
-            <p>Sevdiyin tətbiqləri kəşf et, yenilikləri izlə və Luna dünyasının rəngarəng aləmindən istifadə et.</p>
-            <div class="btn-group">
-                <button class="primary-btn" onclick="alert('Yükləmə prosesi başladı!')">Tətbiqi Yüklə</button>
-                <button class="secondary-btn" onclick="openAI()">AI Köməkçi</button>
+    <div class="wrapper">
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-icon">🌙</div>
+                <div class="brand-name">Luna App</div>
             </div>
-        </div>
-        <div class="hero-mockup">
-            <div class="mockup-icon">🌙</div>
-            <h3 style="margin-bottom: 5px;">Luna App</h3>
-            <p style="font-size: 12px; color: var(--text-muted);">Musiqi, Video, Alətlər</p>
-        </div>
-    </section>
-
-    <!-- App Categories Section -->
-    <div class="container">
-        <div class="section-title">Luna tətbiqləri</div>
-        <div class="categories">
-            <button class="cat-btn active">Hamısı</button>
-            <button class="cat-btn">Musiqi</button>
-            <button class="cat-btn">Video</button>
-            <button class="cat-btn">Alətlər</button>
-        </div>
-
-        <div class="section-title" style="margin-top: 40px;">Yeniliklər</div>
-        <div class="banner-card">
-            <div>
-                <h3>Sadə, sürətli və rəngarəng.</h3>
-                <p>Luna App müxtəlif tətbiqləri bir yerdə kəşf etmək üçün hazırlanmış müasir platformadır.</p>
+            <div class="header-controls">
+                <button class="ctrl-btn" onclick="toggleTheme()">🌓 Tema</button>
+                <button class="ctrl-btn" onclick="openSettings()">⚙️ Ayarlar</button>
             </div>
-            <button class="primary-btn" onclick="alert('Ətraflı məlumat yüklənir...')">Kəşf et</button>
+        </header>
+
+        <section class="banner-box">
+            <div class="banner-text">
+                <h1>Eynilə şəkildəki kimi, <span>müasir və rahat.</span></h1>
+                <p>İstədiyin dizayn üslubunda tətbiqləri kəşf et, ayarları idarə et və süni intellekt köməkçisindən faydalan.</p>
+                <button class="dl-button" onclick="alert('Yükləmə prosesi başladı!')">Tətbiqi Yüklə (APK)</button>
+            </div>
+            <div class="banner-visual">
+                <span style="font-size: 32px; margin-bottom: 8px;">✨</span>
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-muted);">Luna Hub</span>
+            </div>
+        </section>
+
+        <div class="cards-grid">
+            <div class="info-card">
+                <div>
+                    <h3>Süni İntellekt</h3>
+                    <p>Sualına dərhal cavab al</p>
+                </div>
+                <button class="card-btn" onclick="openAI()">Aç</button>
+            </div>
+            <div class="info-card">
+                <div>
+                    <h3>Ayarlar və Font</h3>
+                    <p>Görünüşü özünə görə tənzimlə</p>
+                </div>
+                <button class="card-btn" onclick="openSettings()">Dəyiş</button>
+            </div>
         </div>
     </div>
 
-    <!-- Ayarlar Modalı -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeSettings()">&times;</span>
-            <h3>Tətbiq Ayarları</h3>
-            <br>
-            <label style="font-size: 14px;">Şrift (Font) seçimi:</label>
-            <select id="fontSelect" onchange="changeFont(this.value)" style="width:100%; padding:10px; margin-top:5px; margin-bottom:15px; background:var(--bg-color); color:var(--text-color); border:1px solid var(--border-color); border-radius: 8px;">
+    <div id="settingsModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-x" onclick="closeSettings()">&times;</span>
+            <h3 style="margin-bottom: 16px;">Tənzimləmələr</h3>
+            <label style="font-size: 13px; color: var(--text-muted);">Şrift (Font) seçimi:</label>
+            <select id="fontSelect" onchange="changeFont(this.value)" style="width:100%; padding:10px; margin-top:6px; margin-bottom:20px; background:var(--bg-color); color:var(--text-color); border:1px solid var(--card-border); border-radius: 10px;">
                 <option value="Segoe UI">Segoe UI (Default)</option>
                 <option value="Courier New">Courier New</option>
                 <option value="Georgia">Georgia</option>
                 <option value="Arial">Arial</option>
             </select>
-            <label style="font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <label style="font-size: 13px; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted);">
                 Səs effektləri: <input type="checkbox" checked style="transform: scale(1.2);">
             </label>
         </div>
     </div>
 
-    <!-- AI Köməkçi Üzgəc Düyməsi -->
-    <div class="ai-float-btn" onclick="openAI()">🤖</div>
+    <div class="ai-floating" onclick="openAI()">🤖</div>
 
-    <!-- AI Söhbət Modalı -->
-    <div id="aiModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeAI()">&times;</span>
-            <h3>Luna AI Köməkçi</h3>
-            <div id="chatHistory" style="height: 160px; background: var(--bg-color); margin: 12px 0; padding: 10px; border-radius: 8px; font-size: 13px; overflow-y:auto; border: 1px solid var(--border-color); line-height: 1.4;">
+    <div id="aiModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-x" onclick="closeAI()">&times;</span>
+            <h3 style="margin-bottom: 10px;">Luna AI Köməkçi</h3>
+            <div id="chatHistory" style="height: 150px; background: var(--bg-color); margin: 10px 0; padding: 12px; border-radius: 10px; font-size: 13px; overflow-y:auto; border: 1px solid var(--card-border); line-height: 1.4;">
                 <b>AI:</b> Salam! Mən Luna süni intellektiyəm. Sənə necə kömək edə bilərəm?
             </div>
-            <input type="text" id="userInput" placeholder="Sualını yaz..." style="width: 100%; padding: 10px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px;">
-            <button onclick="sendAIExt()" style="width: 100%; margin-top: 10px; padding: 10px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Göndər</button>
+            <input type="text" id="userInput" placeholder="Sualını yaz..." style="width: 100%; padding: 10px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--card-border); border-radius: 10px; font-size: 14px; margin-bottom: 10px;">
+            <button onclick="sendAIExt()" style="width: 100%; padding: 10px; background: var(--primary-color); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">Göndər</button>
         </div>
     </div>
 
     <script>
-        // Tema dəyişdirici
         function toggleTheme() {
             const html = document.documentElement;
             if (html.getAttribute('data-theme') === 'light') {
@@ -379,16 +318,13 @@
             }
         }
 
-        // Ayarlar pəncərəsi
         function openSettings() { document.getElementById('settingsModal').style.display = 'flex'; }
         function closeSettings() { document.getElementById('settingsModal').style.display = 'none'; }
 
-        // Font dəyişdirici
         function changeFont(fontName) {
             document.body.style.fontFamily = fontName;
         }
 
-        // AI Chat pəncərəsi
         function openAI() { document.getElementById('aiModal').style.display = 'flex'; }
         function closeAI() { document.getElementById('aiModal').style.display = 'none'; }
 
@@ -398,7 +334,6 @@
             if(input.value.trim() === "") return;
 
             history.innerHTML += `<br><br><b>Sən:</b> ${input.value}`;
-            
             let userText = input.value.toLowerCase();
             input.value = "";
 
@@ -409,7 +344,6 @@
                 } else if(userText.includes("yüklə") || userText.includes("apk")) {
                     reply = "Tətbiqi yuxarıdakı 'Tətbiqi Yüklə' düyməsindən endirə bilərsən.";
                 }
-                
                 history.innerHTML += `<br><br><b>AI:</b> ${reply}`;
                 history.scrollTop = history.scrollHeight;
             }, 500);
