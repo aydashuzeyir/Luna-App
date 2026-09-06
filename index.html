@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luna App - Yeni Nəsil Tətbiq Mərkəzi</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #121826;
+            --text-color: #ffffff;
+            --accent-gradient: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+            --primary-color: #6366f1;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #111827;
+            --accent-gradient: linear-gradient(135deg, #4f46e5, #9333ea, #db2777);
+            --primary-color: #4f46e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-buttons button {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Modal Pəncərələr */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* AI Söhbət Qutusu düyməsi */
+        .ai-float-btn {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Luna App</div>
+        <div class="nav-buttons">
+            <button onclick="toggleTheme()">🌓 Tema</button>
+            <button onclick="openSettings()">⚙️ Ayarlar</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Sadə, sürətli və <span>rəngarəng.</span></h1>
+        <p>Sevəcəyin tətbiqləri kəşf et, yenilikləri izlə və Luna dünyasının imkanlarından istifadə et.</p>
+        <button class="download-btn" onclick="alert('Yükləmə uğurla başladı!')">Tətbiqi Yüklə (APK)</button>
+    </section>
+
+    <!-- Ayarlar Modalı -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeSettings()">&times;</span>
+            <h3>Tətbiq Ayarları</h3>
+            <br>
+            <label>Şrift (Font) seçimi:</label>
+            <select id="fontSelect" onchange="changeFont(this.value)" style="width:100%; padding:8px; margin-top:5px; margin-bottom:15px; background:var(--bg-color); color:var(--text-color); border:1px solid #444; border-radius: 5px;">
+                <option value="Segoe UI">Segoe UI (Default)</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Arial">Arial</option>
+            </select>
+            <label>Səs effektləri: <input type="checkbox" checked></label>
+        </div>
+    </div>
+
+    <!-- AI Köməkçi Üzgəc Düyməsi -->
+    <div class="ai-float-btn" onclick="openAI()">🤖</div>
+
+    <!-- AI Söhbət Modalı -->
+    <div id="aiModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAI()">&times;</span>
+            <h3>Luna AI Köməkçi</h3>
+            <div id="chatHistory" style="height: 150px; background: var(--bg-color); margin: 10px 0; padding: 10px; border-radius: 8px; font-size: 14px; overflow-y:auto; border: 1px solid #444;">
+                <b>AI:</b> Salam! Mən Luna süni intellektiyəm. Sənə necə kömək edə bilərəm?
+            </div>
+            <input type="text" id="userInput" placeholder="Sualını yaz..." style="width: 100%; padding: 8px; background: var(--bg-color); color: var(--text-color); border: 1px solid #444; border-radius: 5px;">
+            <button onclick="sendAIExt()" style="width: 100%; margin-top: 8px; padding: 8px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer;">Göndər</button>
+        </div>
+    </div>
+
+    <script>
+        // Tema dəyişdirici
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+            } else {
+                html.setAttribute('data-theme', 'light');
+            }
+        }
+
+        // Ayarlar pəncərəsi
+        function openSettings() { document.getElementById('settingsModal').style.display = 'flex'; }
+        function closeSettings() { document.getElementById('settingsModal').style.display = 'none'; }
+
+        // Font dəyişdirici
+        function changeFont(fontName) {
+            document.body.style.fontFamily = fontName;
+        }
+
+        // AI Chat pəncərəsi
+        function openAI() { document.getElementById('aiModal').style.display = 'flex'; }
+        function closeAI() { document.getElementById('aiModal').style.display = 'none'; }
+
+        function sendAIExt() {
+            const input = document.getElementById('userInput');
+            const history = document.getElementById('chatHistory');
+            if(input.value.trim() === "") return;
+
+            history.innerHTML += `<br><br><b>Sən:</b> ${input.value}`;
+            
+            let userText = input.value.toLowerCase();
+            input.value = "";
+
+            setTimeout(() => {
+                let reply = "Maraqlı sualdır! Luna App olaraq bunu tezliklə əlavə edəcəyik.";
+                if(userText.includes("necəsiz") || userText.includes("necesen")) {
+                    reply = "Çox sağ ol, mən süni intellektəm, hər zaman köməyə hazıram!";
+                } else if(userText.includes("yüklə") || userText.includes("apk")) {
+                    reply = "Tətbiqi yuxarıdakı 'Tətbiqi Yüklə' düyməsindən endirə bilərsən.";
+                }
+                
+                history.innerHTML += `<br><br><b>AI:</b> ${reply}`;
+                history.scrollTop = history.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
